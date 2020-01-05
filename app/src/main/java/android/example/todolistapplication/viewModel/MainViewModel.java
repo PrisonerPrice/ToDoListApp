@@ -1,9 +1,11 @@
 package android.example.todolistapplication.viewModel;
 
 import android.app.Application;
+import android.content.Context;
 import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
 import android.example.todolistapplication.repository.AppExecutors;
+import android.example.todolistapplication.repository.DataExchanger;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -14,23 +16,18 @@ import java.util.List;
 public class MainViewModel extends AndroidViewModel {
 
     private static final String TAG = MainViewModel.class.getSimpleName();
+    private DataExchanger dataExchanger;
 
-    private LiveData<List<Task>> tasks;
-    private AppDatabase appDatabase;
-    private AppExecutors appExecutors;
-
-    public MainViewModel(@NonNull Application application) {
+    public MainViewModel(@NonNull Application application, Context context) {
         super(application);
-        appDatabase = AppDatabase.getInstance(this.getApplication());
-        appExecutors = AppExecutors.getInstance();
-        tasks = appDatabase.taskDao().loadTaskList();
+        dataExchanger = new DataExchanger(context);
     }
 
     public LiveData<List<Task>> getTasks(){
-        return tasks;
+        return dataExchanger.getTaskList();
     }
 
     public void deleteTaskById(final Task task){
-        appExecutors.getDiskIO().execute(() -> { appDatabase.taskDao().deleteTask(task); });
+        dataExchanger.deleteTask(task);
     }
 }
