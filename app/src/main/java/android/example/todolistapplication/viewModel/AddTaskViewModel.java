@@ -1,5 +1,6 @@
 package android.example.todolistapplication.viewModel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
@@ -18,5 +19,9 @@ public class AddTaskViewModel extends ViewModel {
 
     public LiveData<Task> getTask(int taskId){
         return dataExchanger.getTask(taskId);
+    }
+
+    public void insertOrUpdateTask(Activity activity, Task task, int taskId){
+        dataExchanger.insertOrUpdateTask(activity, task, taskId);
     }
 }

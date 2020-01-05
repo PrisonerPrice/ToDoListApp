@@ -1,5 +1,6 @@
 package android.example.todolistapplication.repository;
 
+import android.app.Activity;
 import android.content.Context;
 import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
@@ -12,6 +13,7 @@ public class DataExchanger {
 
     private AppDatabase appDatabase;
     private AppExecutors appExecutors;
+    private static int DEFAULT_TASK_ID = -1;
 
     public DataExchanger(Context context) {
         this.appDatabase = AppDatabase.getInstance(context);
@@ -34,5 +36,17 @@ public class DataExchanger {
 
     public void insertTask(Task task){
         appDatabase.taskDao().insertTask(task);
+    }
+
+    public void insertOrUpdateTask(Activity activity, Task task, int mTaskId){
+        appExecutors.getDiskIO().execute(() -> {
+            if (mTaskId == DEFAULT_TASK_ID){
+                appDatabase.taskDao().insertTask(task);
+            } else {
+                task.setId(mTaskId);
+                appDatabase.taskDao().updateTask(task);
+            }
+            activity.finish();
+        });
     }
 }
