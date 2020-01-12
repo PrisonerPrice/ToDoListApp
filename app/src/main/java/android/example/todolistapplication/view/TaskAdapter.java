@@ -80,6 +80,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return mTaskEntries.size();
     }
 
+    public void setTasks(List<Task> tasks) {
+        this.mTaskEntries = mTaskEntries;
+        notifyDataSetChanged();
+    }
+
+    public List<Task> getTasks(){
+        return mTaskEntries;
+    }
+
     class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView taskDescriptionView;

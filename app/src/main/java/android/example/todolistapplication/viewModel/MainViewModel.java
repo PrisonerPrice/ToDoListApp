@@ -6,10 +6,12 @@ import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
 import android.example.todolistapplication.repository.AppExecutors;
 import android.example.todolistapplication.repository.DataExchanger;
+import android.example.todolistapplication.view.TaskAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class MainViewModel extends AndroidViewModel {
         return dataExchanger.getTaskList();
     }
 
-    public void deleteTaskById(final Task task){
-        dataExchanger.deleteTask(task);
+    public void deleteTask(RecyclerView.ViewHolder viewHolder, TaskAdapter mAdapter){
+        dataExchanger.deleteTask(viewHolder, mAdapter);
     }
 }

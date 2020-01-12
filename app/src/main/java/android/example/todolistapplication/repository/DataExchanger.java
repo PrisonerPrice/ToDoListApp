@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
+import android.example.todolistapplication.view.TaskAdapter;
 
 import androidx.lifecycle.LiveData;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -28,9 +30,11 @@ public class DataExchanger {
         return appDatabase.taskDao().loadTaskList();
     }
 
-    public void deleteTask(Task task){
+    public void deleteTask(RecyclerView.ViewHolder viewHolder, TaskAdapter mAdapter){
         appExecutors.getDiskIO().execute(() -> {
-            appDatabase.taskDao().deleteTask(task);
+            int position = viewHolder.getAdapterPosition();
+            List<Task> tasks = mAdapter.getTasks();
+            appDatabase.taskDao().deleteTask(tasks.get(position));
         });
     }
 
