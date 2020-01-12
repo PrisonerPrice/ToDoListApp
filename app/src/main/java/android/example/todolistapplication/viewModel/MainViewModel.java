@@ -22,7 +22,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(@NonNull Application application, Context context) {
         super(application);
-        dataExchanger = new DataExchanger(context);
+        dataExchanger = DataExchanger.getInstance(context);
     }
 
     public LiveData<List<Task>> getTasks(){

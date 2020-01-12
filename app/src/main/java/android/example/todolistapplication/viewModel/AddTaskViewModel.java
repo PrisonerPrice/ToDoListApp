@@ -14,7 +14,7 @@ public class AddTaskViewModel extends ViewModel {
     private DataExchanger dataExchanger;
 
     public AddTaskViewModel(Context context) {
-        this.dataExchanger = new DataExchanger(context);
+        this.dataExchanger = DataExchanger.getInstance(context);
     }
 
     public LiveData<Task> getTask(int taskId){

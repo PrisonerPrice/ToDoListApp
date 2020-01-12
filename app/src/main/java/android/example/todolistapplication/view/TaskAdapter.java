@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private static final String DATE_FORMAT = "dd/MM/yyy";
+    private static final String DATE_FORMAT = "MM/dd/yyy";
 
     private List<Task> mTaskEntries;
     private Context mContext;

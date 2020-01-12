@@ -19,6 +19,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:tint="@android:color/white"
-        android:srcCompact="@android:drawable/ic_input_add"/>
+        app:srcCompat="@android:drawable/ic_input_add"/>
 
 </FrameLayout>

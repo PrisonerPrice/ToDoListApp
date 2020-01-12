@@ -13,13 +13,23 @@ import java.util.List;
 
 public class DataExchanger {
 
-    private AppDatabase appDatabase;
-    private AppExecutors appExecutors;
+    private static final Object LOCK = new Object();
+    private final AppDatabase appDatabase;
+    private final AppExecutors appExecutors = AppExecutors.getInstance();
+    private static DataExchanger dataExchanger;
     private static int DEFAULT_TASK_ID = -1;
+
+    public static DataExchanger getInstance(Context context){
+        if (dataExchanger == null){
+            synchronized (LOCK){
+                dataExchanger = new DataExchanger(context);
+            }
+        }
+        return dataExchanger;
+    }
 
     public DataExchanger(Context context) {
         this.appDatabase = AppDatabase.getInstance(context);
-        appExecutors = AppExecutors.getInstance();
     }
 
     public LiveData<Task> getTask(int id){

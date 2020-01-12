@@ -3,7 +3,6 @@ package android.example.todolistapplication.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -12,12 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.example.todolistapplication.R;
-import android.example.todolistapplication.database.AppDatabase;
 import android.example.todolistapplication.database.Task;
 import android.example.todolistapplication.viewModel.MainViewModel;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
