@@ -3,7 +3,6 @@ package android.example.todolistapplication.view;
 import android.content.Intent;
 import android.example.todolistapplication.R;
 import android.example.todolistapplication.database.Task;
-import android.example.todolistapplication.repository.DataExchanger;
 import android.example.todolistapplication.viewModel.AddTaskViewModel;
 import android.example.todolistapplication.viewModel.AddTaskViewModelFactory;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.RadioGroup;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.util.Date;
