@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     }
 
     private void setupViewModel() {
-        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel = new MainViewModel(getApplication(), this);
+        //viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.getTasks().observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {

@@ -37,7 +37,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private int mTaskId = DEFAULT_TASK_ID;
 
     private AddTaskViewModelFactory factory = new AddTaskViewModelFactory(this, mTaskId);
-    private final AddTaskViewModel viewModel = ViewModelProviders.of(this, factory).get(AddTaskViewModel.class);
+    private final AddTaskViewModel viewModel = factory.create(AddTaskViewModel.class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
