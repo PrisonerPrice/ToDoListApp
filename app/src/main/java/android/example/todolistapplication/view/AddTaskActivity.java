@@ -56,9 +56,6 @@ public class AddTaskActivity extends AppCompatActivity {
             mButton.setText(R.string.update_button);
             if (mTaskId == DEFAULT_TASK_ID){
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
-
-
-
                 viewModel.getTask(mTaskId).observe(this, task -> {
                     viewModel.getTask(mTaskId).removeObserver((Observer<? super Task>) this);
                     populateUI(task);
@@ -101,8 +98,10 @@ public class AddTaskActivity extends AppCompatActivity {
         switch (checkedId){
             case R.id.radButton1:
                 priority = PRIORITY_HIGH;
+                break;
             case R.id.radButton2:
                 priority = PRIORITY_MEDIUM;
+                break;
             case R.id.radButton3:
                 priority = PRIORITY_LOW;
         }
