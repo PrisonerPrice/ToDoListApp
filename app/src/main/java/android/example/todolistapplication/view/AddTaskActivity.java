@@ -20,7 +20,7 @@ import java.util.Date;
 public class AddTaskActivity extends AppCompatActivity {
 
     public static final String EXTRA_TASK_ID = "extraTaskId";
-    public static final String INSTANCE_TASK_ID = "nstanceTaskId";
+    public static final String INSTANCE_TASK_ID = "instanceTaskId";
 
     public static final int PRIORITY_HIGH = 1;
     public static final int PRIORITY_MEDIUM = 2;
@@ -56,10 +56,25 @@ public class AddTaskActivity extends AppCompatActivity {
             mButton.setText(R.string.update_button);
             if (mTaskId == DEFAULT_TASK_ID){
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
+
                 viewModel.getTask(mTaskId).observe(this, task -> {
-                    viewModel.getTask(mTaskId).removeObserver((Observer<? super Task>) this);
+                    viewModel.getTask(mTaskId).removeObservers(this);
                     populateUI(task);
                 });
+
+                // TODO 1: ? why one works and another does not work
+
+                /*
+                viewModel.getTask(mTaskId).observe(this, new Observer<Task>() {
+                    @Override
+                    public void onChanged(Task task) {
+                        viewModel.getTask(mTaskId).removeObserver(this);
+                        populateUI(task);
+                    }
+                });
+                 */
+
+
             }
         }
     }
@@ -118,4 +133,5 @@ public class AddTaskActivity extends AppCompatActivity {
                 ((RadioGroup) findViewById(R.id.radioGroup)).check(R.id.radButton3);
         }
     }
+
 }

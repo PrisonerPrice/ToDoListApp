@@ -68,12 +68,9 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
 
     private void setupViewModel() {
         viewModel = new MainViewModel(getApplication(), this);
-        viewModel.getTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(List<Task> tasks) {
-                Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
-                mAdapter.setTasks(tasks);
-            }
+        viewModel.getTasks().observe(this, tasks -> {
+            Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
+            mAdapter.setTasks(tasks);
         });
     }
 
